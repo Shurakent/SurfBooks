@@ -6,42 +6,38 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.surfbook.ui.theme.SurfBookTheme
+import androidx.navigation.compose.rememberNavController
+import com.example.surfbook.presentation.navigation.AppNavigation
+import com.example.surfbook.presentation.navigation.AppNavigationGraph
+import com.example.surfbook.presentation.navigation.BottomNavigationBar
+import com.example.surfbook.presentation.ui.theme.SurfBookTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
-            SurfBookTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+        setContent { App() }
+    }
+
+    @Composable
+    fun App() {
+        val navController = rememberNavController()
+        SurfBookTheme {
+            Scaffold(
+                bottomBar = {
+                    BottomNavigationBar(navController = navController)
                 }
+            ) { innerPadding ->
+                AppNavigationGraph(
+                    navController = navController,
+                    modifier = Modifier.padding(innerPadding)
+                )
             }
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SurfBookTheme {
-        Greeting("Android")
     }
 }
