@@ -37,8 +37,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import com.example.surfbook.R
 
-val colors = MaterialTheme.colorScheme
 
 @Composable
 fun SearchScreen() {
@@ -61,6 +62,8 @@ fun SearchScreen() {
 
 @Composable
 fun SearchBar() {
+    val colors = MaterialTheme.colorScheme
+
     val searchQuery = remember { mutableStateOf("") }
 
     TextField(
@@ -71,16 +74,18 @@ fun SearchBar() {
             .padding(16.dp),
         shape = RoundedCornerShape(24.dp), // Овальная форма
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = Color.LightGray.copy(alpha = 0.2f),
-            unfocusedContainerColor = Color.LightGray.copy(alpha = 0.2f),
+            focusedContainerColor = colors.secondary,
+            unfocusedContainerColor = colors.secondary,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
             disabledIndicatorColor = Color.Transparent
         ),
         leadingIcon = {
             Icon(
-                imageVector = Icons.Default.Search, // Или используйте CustomSearchIcon()
-                contentDescription = "Поиск"
+                painter = painterResource(id = R.drawable.ic_search_grey), // Укажите ваш ресурс
+                contentDescription = "Поиск",
+                tint = colors.tertiary
+
             )
         },
         placeholder = {
