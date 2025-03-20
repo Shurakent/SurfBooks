@@ -89,7 +89,7 @@ fun SearchBar() {
             )
         },
         placeholder = {
-            Text("Введите название книги")
+            Text("Поиск")
         },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),

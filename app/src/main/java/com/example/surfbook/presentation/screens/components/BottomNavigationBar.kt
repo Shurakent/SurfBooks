@@ -42,7 +42,6 @@ fun BottomNavigationBar(navController: NavHostController) {
                     painter = painterResource(id = R.drawable.ic_search_grey), // Укажите ваш ресурс
                     contentDescription = "Поиск",
                     tint = colors.tertiary
-
                 )
             },
             label = { Text("Поиск") },
