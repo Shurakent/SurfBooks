@@ -5,6 +5,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.example.surfbook.presentation.screens.components.BottomNavigationBar
 
 @Composable
 fun AppNavigation() {

@@ -1,24 +1,39 @@
-package com.example.surfbook.presentation.navigation
+package com.example.surfbook.presentation.screens.components
 
+import android.annotation.SuppressLint
+import android.content.res.Resources.Theme
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.example.surfbook.presentation.navigation.Route
+import com.example.surfbook.presentation.ui.theme.Blue80
+import com.example.surfbook.presentation.ui.theme.SurfBookTheme
+import com.example.surfbook.presentation.ui.theme.White100
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val colors = MaterialTheme.colors
 
-    BottomNavigation {
+    BottomNavigation(
+        backgroundColor = White100,
+        contentColor = Blue80
+    ) {
+
         BottomNavigationItem(
             icon = { Icon(Icons.Default.Search, contentDescription = "Поиск") },
             label = { Text("Поиск") },
