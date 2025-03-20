@@ -1,9 +1,5 @@
 package com.example.surfbook.domain.models
 
-data class BooksResponse(
-    val items: List<Book>?
-)
-
 data class Book(
     val id: String,
     val volumeInfo: VolumeInfo
@@ -19,4 +15,8 @@ data class VolumeInfo(
 
 data class ImageLinks(
     val thumbnail: String?
+)
+
+data class BooksResponse(
+    val items: List<Book>?
 )

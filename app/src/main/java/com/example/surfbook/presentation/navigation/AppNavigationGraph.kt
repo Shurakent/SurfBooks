@@ -7,7 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.surfbook.presentation.screens.favorite.FavoritesScreen
-import com.example.surfbook.presentation.screens.search.components.SearchScreen
+import com.example.surfbook.presentation.screens.search.SearchScreen
 
 @Composable
 fun AppNavigationGraph(
