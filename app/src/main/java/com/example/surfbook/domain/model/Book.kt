@@ -1,4 +1,4 @@
-package com.example.surfbook.domain.models
+package com.example.surfbook.domain.model
 
 data class Book(
     val id: String,

@@ -1,6 +1,6 @@
 package com.example.surfbook.data.di
 
-import com.example.surfbook.data.books.remote.GoogleBooksApi
+import com.example.surfbook.data.remote.GoogleBooksApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

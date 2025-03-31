@@ -11,8 +11,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -42,7 +40,7 @@ fun SearchBar(
         ),
         leadingIcon = {
             Icon(
-                painter = painterResource(id = R.drawable.ic_search_grey),
+                painter = painterResource(id = R.drawable.ic_search_default),
                 contentDescription = "Поиск",
                 tint = MaterialTheme.colorScheme.tertiary
             )

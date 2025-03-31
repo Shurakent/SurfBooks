@@ -23,8 +23,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.surfbook.domain.models.Book
-import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.surfbook.presentation.screens.search.components.SearchBar
 import com.example.surfbook.presentation.screens.search.components.SearchItem
 
@@ -87,4 +86,9 @@ fun SearchApp() {
             Text("Refresh Advice")
         }
     }
+}
+@Preview(apiLevel = 34)
+@Composable
+fun SearchAppPreview() {
+    SearchApp()
 }
