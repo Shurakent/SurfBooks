@@ -1,6 +1,6 @@
-package com.example.surfbook.data.books.remote
+package com.example.surfbook.data.remote
 
-import com.example.surfbook.domain.models.BooksResponse
+import com.example.surfbook.domain.model.BooksResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
