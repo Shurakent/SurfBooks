@@ -36,7 +36,7 @@ fun BottomNavigationBar(navController: NavHostController) {
         BottomNavigationItem(
             modifier = Modifier.padding(10.dp),
             label = {Text(
-                "Избранное",
+                "Поиск",
                 style = typo.labelMedium,
                 color = if (currentRoute == Route.SearchScreen().route) colors.primary else colors.secondary
             )},
