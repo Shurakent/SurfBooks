@@ -16,6 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 
@@ -40,15 +43,25 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel()) {
                     onQueryChange = { viewModel.updateQuery(it) }, // Обновляем текст в ViewModel
                     onSearch = { viewModel.fetchBooks() } // Выполняем поиск
                 ) // Строка поиска
-                SearchItem()
                 Spacer(modifier = Modifier.height(16.dp))
-                SearchApp()
                 // Остальной контент
-                LazyColumn {
-                    items(listOf("Книга 1", "Книга 2", "Книга 3")) { book ->
-                        Text(text = book, modifier = Modifier.padding(16.dp))
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(searchResult) { book ->
+                        SearchItem(volumeInfo = book.volumeInfo)
                     }
                 }
+//                LazyColumn {
+//                    items(searchResult) { book ->
+//                        SearchItem(volumeInfo = book.volumeInfo)
+//                    }
+//                }
             }
         }
     )
@@ -63,32 +76,8 @@ fun SearchScreen(viewModel: SearchViewModel = viewModel()) {
 //    }
 //}
 
-@Composable
-fun SearchApp() {
-    val viewModel: SearchViewModel = viewModel()
-    val response by viewModel.searchResult.collectAsState()
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = response,
-            style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(16.dp)
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { viewModel.fetchBooks() }) {
-            Text("Refresh Advice")
-        }
-    }
-}
 @Preview(apiLevel = 34)
 @Composable
-fun SearchAppPreview() {
-    SearchApp()
+fun SearchScreenPreview() {
+    SearchScreen()
 }

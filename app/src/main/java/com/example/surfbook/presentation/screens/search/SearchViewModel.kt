@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
+import com.example.surfbook.domain.model.Book
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,8 +21,8 @@ class SearchViewModel : ViewModel() {
     val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
 
     // Состояние для хранения результата поиска
-    private val _searchResult = MutableStateFlow("")
-    val searchResult: StateFlow<String> = _searchResult.asStateFlow()
+    private val _searchResult = MutableStateFlow<List<Book>>(emptyList())
+    val searchResult: StateFlow<List<Book>> = _searchResult.asStateFlow()
 
     // Метод для обновления текста поиска
     fun updateQuery(newQuery: String) {
@@ -33,9 +34,9 @@ class SearchViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = RetrofitInstance.api.searchBooks(_searchQuery.value)
-                _searchResult.value = response.items?.get(0)?.volumeInfo?.title ?: "Ничего не найдено"
+                _searchResult.value = response.items ?: emptyList()
             } catch (e: Exception) {
-                _searchResult.value = "Ошибка: ${e.message}"
+                _searchResult.value = emptyList()
             }
         }
     }
