@@ -1,37 +1,26 @@
 package com.example.surfbook.presentation.screens.search.components
 
-import android.support.wearable.watchface.decomposition.ImageComponent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.autofill.ContentDataType.Companion.Text
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.ImageLoader
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.surfbook.R
 import com.example.surfbook.domain.model.ImageLinks
@@ -39,28 +28,20 @@ import com.example.surfbook.domain.model.VolumeInfo
 
 @Composable
 fun SearchItem(volumeInfo: VolumeInfo) {
+    val typo = MaterialTheme.typography
+    val colors = MaterialTheme.colorScheme
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-    ) {
-        Column(modifier = Modifier.padding(8.dp)) {
+            .fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.Transparent
+        )
+    ){
+        Column() {
             val imageUrl =  volumeInfo.imageLinks?.thumbnail
-            val imageLoader = ImageLoader.Builder(LocalContext.current)
-                .build()
+
             if (imageUrl != null){
-//                Image(
-//                    painter = rememberAsyncImagePainter(
-//                        model = "http://books.google.com/books/content?id=HN0HAQAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-//                        imageLoader = imageLoader
-//                    ),
-//                    contentDescription = "Обложка книги",
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .height(180.dp)
-//                        .clip(MaterialTheme.shapes.medium)
-//                )
-                Spacer(modifier = Modifier.height(8.dp))
+//                Spacer(modifier = Modifier.height(8.dp))
                 AsyncImage(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -76,13 +57,18 @@ fun SearchItem(volumeInfo: VolumeInfo) {
                     contentScale = ContentScale.Crop
                 )
             }
-            Text(text = volumeInfo.title, fontSize = 16.sp)
             volumeInfo.authors?.let {
-                Text(text = it.joinToString(", "), fontSize = 13.sp)
+                Text(
+                    text = it.joinToString(", "),
+                    style = typo.labelSmall,
+                    color = colors.tertiary
+                )
             }
-            volumeInfo.publishedDate?.let {
-                Text(text = "Год: $it", fontSize = 12.sp)
-            }
+            Text(
+                text = volumeInfo.title ?: "Без названия",
+                style = typo.labelSmall,
+                color = colors.surface
+            )
         }
     }
 }

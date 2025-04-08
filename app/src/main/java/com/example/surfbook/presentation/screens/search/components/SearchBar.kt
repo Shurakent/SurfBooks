@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.example.surfbook.R
 @Composable
 fun SearchBar(
+    //surface
     searchQuery: String, // Текущий текст поиска
     onQueryChange: (String) -> Unit, // Функция для обновления текста
     onSearch: () -> Unit // Функция для выполнения поиска
@@ -33,15 +34,18 @@ fun SearchBar(
         onValueChange = onQueryChange,
         modifier = Modifier
             .fillMaxWidth()
-            .height(height = 64.dp)
+            .height(height = 70.dp)
             .padding(start = 20.dp, top = 12.dp, end = 20.dp, bottom = 12.dp),
         shape = RoundedCornerShape(18.dp),
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = colors.secondary,
+            focusedContainerColor = colors.onTertiary,
             unfocusedContainerColor = colors.onTertiary,
             unfocusedIndicatorColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent
+            disabledIndicatorColor = Color.Transparent,
+            focusedTextColor = colors.surface,
+            unfocusedTextColor = colors.surface,
+            cursorColor = colors.surface
         ),
         leadingIcon = {
             Icon(
@@ -50,6 +54,7 @@ fun SearchBar(
                 tint = colors.secondary
             )
         },
+        textStyle = typo.labelMedium,
         placeholder = {
             Text("Поиск",
                 color = colors.secondary,
